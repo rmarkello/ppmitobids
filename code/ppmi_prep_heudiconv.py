@@ -90,7 +90,8 @@ if __name__ == '__main__':
 
     # get all the subjects in the data directory and prepare for heudiconv
     for subj_dir in sorted(DATA_DIR.glob('*')):
-        if not subj_dir.is_dir(): continue
+        if not subj_dir.is_dir():
+            continue
         prep_for_heudiconv(subj_dir, timeout=timeout)
 
     # rename PPMI to data
