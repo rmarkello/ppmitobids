@@ -24,6 +24,8 @@ The code and software contained herein is designed to convert neuroimaging data 
     ```
     That is, subjects should each get their own directory (3000, 3001, ..., NNNN). Within each subject directory there should be a unique directory for each scan type and, within those, a directory for each visit. This is the default layout that occurs if you download DICOM data from the PPMI website, so *you shouldn't have to do any re-organizing!*
 
-2. Run `./code/run_conversion.sh` and go to lunch. Check out the docstring at the top of that script for more info on what it does, however, briefly, it uses `code/ppmi_prep_heudiconv.py` to do some light reorganizing of the downloaded PPMI data and then runs [heudiconv](https://github.com/nipy/heudiconv) to convert the DICOM data to BIDS format, using `code/ppmi_heuristic.py` to map the raw DICOM series to BIDS-compatible names. The output BIDS data will be in the `data` directory.
+2. Download [this](https://bit.ly/2qplVES) Singularity container with the correct versions of the conversion software and place it in the `code` directory.
 
-3. Use the organized PPMI BIDS dataset located in `data` for analyses!
+3. Run `./code/run_conversion.sh` and go to lunch. Check out the docstring at the top of that script for more info on what it does, however, briefly, it uses `code/ppmi_prep_heudiconv.py` to do some light reorganizing of the downloaded PPMI data and then runs [`heudiconv`](https://github.com/nipy/heudiconv) to convert the DICOM data to BIDS format, using `code/ppmi_heuristic.py` to map the raw DICOM series to BIDS-compatible names. The output BIDS data will be in the `data` directory.
+
+4. Use the organized PPMI BIDS dataset located in `data` for analyses!
