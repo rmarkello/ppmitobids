@@ -28,26 +28,26 @@ fi
 # copy bad sessions text file into raw PPMI directory
 # this prevents heudiconv from trying to convert bad sessions that would cause
 # it to crash (due to the DICOMS being corrupted / bad / malformed)
-cp ${script_dir}/sessions.txt ${parent_dir}/PPMI/sessions.txt
+cp "${script_dir}/sessions.txt" "${parent_dir}/PPMI/sessions.txt"
 
 # run ppmi_prep_heudiconv.py
 # converts PPMI directory as downloaded from PPMI website into better structure
-python ${script_dir}/ppmi_prep_heudiconv.py
+python "${script_dir}/ppmi_prep_heudiconv.py"
 
 # create output directory for PPMI BIDS dataset, if it doesn't exist
-mkdir -p ${parent_dir}/data
+mkdir -p "${parent_dir}/data"
 
 # now, copy heudiconv heuristic that will map raw DICOMs to BIDS format
-cp ${script_dir}/ppmi_heuristic.py ${parent_dir}/raw/ppmi_heuristic.py
+cp "${script_dir}/ppmi_heuristic.py" "${parent_dir}/raw/ppmi_heuristic.py"
 
 # get all the subjects in the PPMI folder that we'll need to run
-subjects=$( find ${parent_dir}/raw -maxdepth 1 -type d -name "????" -exec basename {} \; | sort )
+subjects=$( find "${parent_dir}/raw" -maxdepth 1 -type d -name "????" -exec basename {} \; | sort )
 
 # run heudiconv on the PPMI dataset
 for sess in 1 2 3 4 5; do
-    singularity run -B ${parent_dir}/data:/out                                \
-                    -B ${parent_dir}/raw:/data                                \
-                    ${script_dir}/heudiconv.simg                              \
+    singularity run -B "${parent_dir}/data:/out"                              \
+                    -B "${parent_dir}/raw:/data"                              \
+                    "${script_dir}/heudiconv.simg"                            \
                     -d /data/{subject}/{session}/*/*dcm                       \
                     -s ${subjects} -ss ${sess}                                \
                     --outdir /out                                             \
