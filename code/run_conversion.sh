@@ -52,5 +52,5 @@ for sess in 1 2 3 4 5; do
                     -s ${subjects} -ss ${sess}                                \
                     --outdir /out                                             \
                     --heuristic /data/ppmi_heuristic.py                       \
-                    --converter dcm2niix --bids --minmeta                     \
+                    --converter dcm2niix --bids --minmeta
 done

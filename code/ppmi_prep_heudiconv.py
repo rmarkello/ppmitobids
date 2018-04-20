@@ -55,11 +55,11 @@ def prep_for_heudiconv(subj_dir, timeout=None):
     # iterate through sessions and copy scans to uniform directory structure
     for n, ses in enumerate(sessions, prev + 1):
         # make session directory
-        ses_dir = subj_dir / f'{n}'
+        ses_dir = subj_dir / str(n)
         ses_dir.mkdir(exist_ok=True)
 
         # iterate through all scans for a given session (visit) and move
-        for scan_type in subj_dir.glob(f'*/{ses}*/*'):
+        for scan_type in subj_dir.glob('*/{0}*/*'.format(ses)):
             # idk why this would be but check just in case????
             if not scan_type.is_dir():
                 continue
