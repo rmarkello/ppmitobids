@@ -1,3 +1,8 @@
 *simg
 *zip
-data/
+sub-*/
+derivatives/
+phenotype/
+work/
+data/*json
+data/*tsv
