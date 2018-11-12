@@ -13,7 +13,7 @@
 # commands). Once this is started, you should probably head to lunch --- the
 # conversion process takes a long while. After it's done, check the "data"
 # directory for a (hopefully) fully-functional BIDS dataset.
-
+#
 
 # get directory of this script and make sure PPMI directory exists
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -41,7 +41,10 @@ mkdir -p "${parent_dir}/data"
 cp "${script_dir}/ppmi_heuristic.py" "${parent_dir}/raw/ppmi_heuristic.py"
 
 # get all the subjects in the PPMI folder that we'll need to run
-subjects=$( find "${parent_dir}/raw" -maxdepth 1 -type d -name "????" -exec basename {} \; | sort )
+subjects=$( find "${parent_dir}/raw" -maxdepth 1                              \
+                                     -type d                                  \
+                                     -name "????"                             \
+                                     -exec basename {} \; | sort )
 
 # run heudiconv on the PPMI dataset
 for sess in 1 2 3 4 5; do
@@ -49,7 +52,7 @@ for sess in 1 2 3 4 5; do
                     -B "${parent_dir}/raw:/data"                              \
                     "${script_dir}/heudiconv.simg"                            \
                     -d /data/{subject}/{session}/*/*dcm                       \
-                    -s ${subjects} -ss ${sess}                                \
+                    -s "${subjects}" -ss "${sess}"                            \
                     --outdir /out                                             \
                     --heuristic /data/ppmi_heuristic.py                       \
                     --converter dcm2niix --bids --minmeta

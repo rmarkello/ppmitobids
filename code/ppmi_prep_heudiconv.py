@@ -71,8 +71,9 @@ def prep_for_heudiconv(subj_dir, timeout=None):
                 scan_type.rename(dest / scan_type.name)
                 continue
 
-            # oterhwise, move it to the appropriate scan directory
+            # otherwise, move it to the appropriate scan directory
             scan_type.rename(ses_dir / scan_type.name)
+
             # if there are no more scans in the parent directory, remove it
             remain = [f for f in scan_type.parent.glob('*') if f != scan_type]
             if len(remain) == 0:

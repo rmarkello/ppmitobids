@@ -4,5 +4,5 @@ sub-*/
 derivatives/
 phenotype/
 work/
-data/*json
-data/*tsv
+data/
+behavior/
