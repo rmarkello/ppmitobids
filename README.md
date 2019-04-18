@@ -1,3 +1,5 @@
+***NOTE: This code is now deprecated in favor of [`pypmi`](https://github.com/rmarkello/pypmi)***
+
 # PPMI to BIDS
 
 The code and software contained in this repository is designed to convert neuroimaging data from the Parkinon Progression Markers Initiative ([PPMI](http://www.ppmi-info.org)) into [BIDS](bids.neuroimaging.io) format.
